@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Regular.ttf");
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: snow;
+}
+
 .game {
   padding: 36px 96px;
 }
@@ -31,6 +44,10 @@
   background-color: aliceblue;
 }
 
+.circle:hover {
+  background-color: brown;
+}
+
 .red {
   background-color: red;
 }
@@ -49,7 +66,8 @@
 
 .circle-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(96px, 128px));
+  justify-content: center;
   justify-items: center;
   gap: 24px;
   margin-top: 48px;
@@ -62,8 +80,13 @@
   margin-top: 24px;
 }
 
-.score {
+.score,
+.best-score-container {
   text-align: center;
   margin-top: 48px;
+  font-size: 24px;
+}
+
+.best-score {
   font-size: 24px;
 }

@@ -5,8 +5,9 @@ let currentSequenceIndex = 0;
 
 const buttons = document.querySelectorAll(".circle");
 const scoreDisplay = document.querySelector(".score");
+const bestScoreDisplay = document.querySelector(".best-score");
 
-scoreDisplay.textContent = localStorage.getItem("score") ?? 0;
+bestScoreDisplay.textContent = localStorage.getItem("score") ?? 0;
 
 const place = {
   red: 0,
@@ -28,7 +29,7 @@ const playSequence = async () => {
       setTimeout(() => {
         flashButton(sequence[i]);
         resolve();
-      }, 600);
+      }, 800);
     });
   }
 };
@@ -61,10 +62,14 @@ const handleButtonClick = (color) => {
     return;
   }
 
+  const sound = new Audio(`./sound/${color}.mp3`);
+
+  sound.play();
+
   if (currentSequenceIndex >= sequence.length) {
     score++;
     currentSequenceIndex = 0;
-    scoreDisplay.textContent = score;
+    scoreDisplay.textContent = 0;
     setTimeout(startRound, 1000);
   }
 };
@@ -74,6 +79,7 @@ const resetGame = () => {
 
   if (!prevScore || prevScore < score) {
     localStorage.setItem("score", score);
+    bestScoreDisplay.textContent = score;
   }
 
   score = 0;
