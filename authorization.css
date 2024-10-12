@@ -1,0 +1,23 @@
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px 256px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container > label {
+  font-size: 18px;
+}
+
+.button-container {
+  margin-top: 24px;
+}
+
+.put-score-container {
+  margin-top: 24px;
+}

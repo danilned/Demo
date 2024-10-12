@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" />
+    <link href="./header.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="./index.html">Rules</a>
+        <a href="./authorization.html">Authorization</a>
+      </nav>
+    </header>
+    <main>
+      <section class="header-description">
+        <h3>Memory Game</h3>
+        <p>Test yout memory by repeating colors</p>
+      </section>
+      <div class="game">
+        <section class="game-description">
+          <div class="htp-container">
+            <h2>How to play</h2>
+            <ol>
+              <li>Начните игру, выбрав игрока, который ходит первым.</li>
+              <li>
+                Каждый игрок по очереди выполняет ход, следуя установленным
+                правилам.
+              </li>
+              <li>
+                Во время своего хода игрок может использовать доступные действия
+                или карты (если применимо).
+              </li>
+              <li>
+                Цель каждого игрока – набрать максимальное количество очков или
+                выполнить игровую задачу.
+              </li>
+              <li>
+                Игра продолжается до тех пор, пока один из игроков не достигнет
+                условий победы.
+              </li>
+            </ol>
+          </div>
+          <div class="rules-container">
+            <h2>Game rules</h2>
+            <ul>
+              <li>Каждый игрок должен по очереди выполнять свои ходы.</li>
+              <li>
+                Игроки могут взаимодействовать друг с другом только в пределах
+                своих ходов.
+              </li>
+              <li>Выигрывает тот, кто первым наберет 10 очков.</li>
+              <li>Если игрок нарушает правило, он пропускает следующий ход.</li>
+              <li>
+                Игра продолжается до тех пор, пока не будет объявлен победитель.
+              </li>
+            </ul>
+          </div>
+        </section>
+        <div class="score">0</div>
+        <section class="circle-container">
+          <div class="circle red"></div>
+          <div class="circle blue"></div>
+          <div class="circle yellow"></div>
+          <div class="circle green"></div>
+        </section>
+        <div class="start-game-container">
+          <button>Start game</button>
+        </div>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
