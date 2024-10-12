@@ -6,6 +6,8 @@ let currentSequenceIndex = 0;
 const buttons = document.querySelectorAll(".circle");
 const scoreDisplay = document.querySelector(".score");
 
+scoreDisplay.textContent = localStorage.getItem("score") ?? 0;
+
 const place = {
   red: 0,
   blue: 1,
@@ -59,8 +61,6 @@ const handleButtonClick = (color) => {
     return;
   }
 
-  console.log(sequence, currentSequenceIndex);
-
   if (currentSequenceIndex >= sequence.length) {
     score++;
     currentSequenceIndex = 0;
@@ -70,8 +70,15 @@ const handleButtonClick = (color) => {
 };
 
 const resetGame = () => {
+  const prevScore = localStorage.getItem("score");
+
+  if (!prevScore || prevScore < score) {
+    localStorage.setItem("score", score);
+  }
+
   score = 0;
   sequence = [];
+  currentSequenceIndex = 0;
   scoreDisplay.textContent = score;
 };
 
