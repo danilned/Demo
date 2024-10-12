@@ -67,9 +67,8 @@ const handleButtonClick = (color) => {
   sound.play();
 
   if (currentSequenceIndex >= sequence.length) {
-    score++;
     currentSequenceIndex = 0;
-    scoreDisplay.textContent = 0;
+    scoreDisplay.textContent = ++score;
     setTimeout(startRound, 1000);
   }
 };

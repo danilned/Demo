@@ -5,10 +5,16 @@
 
 * {
   font-family: "Roboto", sans-serif;
+  user-select: none;
 }
 
 body {
   background-color: snow;
+}
+
+button,
+.circle {
+  cursor: pointer;
 }
 
 .game {
