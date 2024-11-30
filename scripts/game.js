@@ -1,6 +1,7 @@
-import { apiURL } from "./request_sender.js";
+import { apiURL, retryRequest } from "./request_sender.js";
 
 let score = 0;
+let bestScore = null;
 let sequence = [];
 let blockStartGame = false;
 let blockButtonsClick = false;
@@ -9,13 +10,11 @@ let currentSequenceIndex = 0;
 const buttons = document.querySelectorAll(".circle");
 const scoreDisplay = document.querySelector(".score");
 const bestScoreDisplay = document.querySelector(".best-score");
-
-bestScoreDisplay.textContent = localStorage.getItem("score") ?? 0;
+const username = localStorage.getItem("username");
 
 const putScore = async () => {
-  console.log("Put score");
   try {
-    await fetch(`${apiURL}/players/sadamxuseinn`, {
+    await retryRequest(`${apiURL}/players/${username}`, {
       method: "PUT",
       body: JSON.stringify({ score }),
       credentials: "include",
@@ -24,10 +23,31 @@ const putScore = async () => {
       },
     });
   } catch (error) {
-    // Error
     console.log(error);
   }
 };
+
+const getBestScore = async () => {
+  try {
+    const result = await retryRequest(
+      `${apiURL}/players/${localStorage.getItem("username")}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await result.json();
+    bestScoreDisplay.textContent = bestScore = data.Score;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getBestScore();
 
 const place = {
   red: 0,
@@ -91,13 +111,10 @@ const handleButtonClick = (color) => {
 };
 
 const resetGame = () => {
-  const prevScore = localStorage.getItem("score");
-
   putScore();
 
-  if (!prevScore || +prevScore < score) {
-    localStorage.setItem("score", score);
-    bestScoreDisplay.textContent = score;
+  if (bestScore === null || bestScore < score) {
+    bestScoreDisplay.textContent = bestScore = score;
   }
 
   score = 0;

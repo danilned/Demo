@@ -1,3 +1,7 @@
+body {
+  min-height: 100vh;
+}
+
 th > * {
   display: inline-block;
 }
@@ -8,4 +12,26 @@ th > p {
 
 th > img {
   cursor: pointer;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.search-container {
+  padding: 0px 96px;
+}
+
+.pagination a {
+  cursor: pointer;
+}
+
+.leaderboard-table {
+  min-height: 412px;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-wrapper {
+  flex-grow: 1;
 }

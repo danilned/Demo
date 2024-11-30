@@ -1,4 +1,8 @@
-import { apiURL, cookieExpireInMillis } from "./request_sender.js";
+import {
+  apiURL,
+  retryRequest,
+  cookieExpireInMillis,
+} from "./request_sender.js";
 
 async function hashPassword(password) {
   const encoder = new TextEncoder();
@@ -11,6 +15,9 @@ async function hashPassword(password) {
   return hashHex;
 }
 
+const alertContainer = document.querySelector(".alert");
+const alertInfo = document.querySelector(".alert > .info");
+
 document.querySelector(".auth").addEventListener("click", async () => {
   try {
     const login = document.querySelector(".input-name").value;
@@ -18,20 +25,31 @@ document.querySelector(".auth").addEventListener("click", async () => {
 
     const pass = await hashPassword(password);
 
-    await fetch(`${apiURL}/login`, {
+    const response = await retryRequest(`${apiURL}/login`, {
       method: "POST",
       credentials: "include",
       body: JSON.stringify({ login, password: pass }),
     });
 
+    await response.json();
+
     localStorage.setItem(
       "cookieExpiresIn",
       new Date().getTime() + cookieExpireInMillis
     );
+    localStorage.setItem("username", login);
+
+    alertInfo.innerText = "Пользователь успешно авторизован!";
+    alertContainer.classList.add("show");
 
     document.dispatchEvent(new Event("authorized"));
   } catch (error) {
-    console.log(error);
+    alertInfo.innerText = error.message ?? "Ошибка при авторизации";
+    alertContainer.classList.add("show");
+  } finally {
+    setTimeout(() => {
+      alertContainer.classList.remove("show");
+    }, 2000);
   }
 });
 
@@ -42,11 +60,21 @@ document.querySelector(".register").addEventListener("click", async () => {
 
     const pass = await hashPassword(password);
 
-    const req = await fetch(`${apiURL}/players`, {
+    const response = await retryRequest(`${apiURL}/players`, {
       method: "POST",
       body: JSON.stringify({ login, password: pass }),
     });
+
+    await response.json();
+
+    alertInfo.innerText = "Пользователь успешно зарегистрирован!";
+    alertContainer.classList.add("show");
   } catch (error) {
-    console.log(error);
+    alertInfo.innerText = error.message ?? "Ошибка при регистрации";
+    alertContainer.classList.add("show");
+  } finally {
+    setTimeout(() => {
+      alertContainer.classList.remove("show");
+    }, 2000);
   }
 });

@@ -64,3 +64,24 @@ export function alertCallback(text) {
 export const devApiURL = "http://127.0.0.1:8000";
 export const apiURL = "https://d5dsv84kj5buag61adme.apigw.yandexcloud.net";
 export const cookieExpireInMillis = 1000 * 60 * 2;
+
+export const retryRequest = async (url, options, retries = 3, delay = 1000) => {
+  try {
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(`Ошибка: ${response.statusText}`);
+    }
+
+    return response;
+  } catch (error) {
+    if (retries > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      return retryRequest(url, options, retries - 1, delay);
+    }
+
+    throw new Error(
+      `Запрос не удался после нескольких попыток: ${error.message}`
+    );
+  }
+};

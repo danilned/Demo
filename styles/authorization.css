@@ -2,7 +2,8 @@ main {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 24px 256px;
+  margin: 24px 256px;
+  position: relative;
 }
 
 .input-container {
@@ -20,4 +21,9 @@ main {
 
 .put-score-container {
   margin-top: 24px;
+}
+
+div.alert {
+  position: absolute;
+  width: 100%;
 }

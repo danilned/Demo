@@ -13,6 +13,8 @@
 
 body {
   background-color: var(--bs-light) !important;
+  display: none;
+  opacity: 0;
 }
 
 header {
