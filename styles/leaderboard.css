@@ -1,0 +1,11 @@
+th > * {
+  display: inline-block;
+}
+
+th > p {
+  padding-right: 12px;
+}
+
+th > img {
+  cursor: pointer;
+}

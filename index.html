@@ -3,21 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./style.css" rel="stylesheet" />
-    <link href="./header.css" rel="stylesheet" />
-    <link href="./buttons.css" rel="stylesheet" />
+    <link href="./styles/style.css" rel="stylesheet" />
+    <link href="./styles/header.css" rel="stylesheet" />
     <link rel="shortcut icon" type="image/jpg" href="./public/favicon.ico" />
-    <title>Simon Game</title>
+    <link
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Main Page</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="./index.html">Rules</a>
-        <a href="./authorization.html">Authorization</a>
-      </nav>
-    </header>
+    <header-component></header-component>
     <main>
-      <section class="header-description">
+      <section class="header-description" id="header-description">
         <h3>Memory Game</h3>
         <p>Test yout memory by repeating colors</p>
       </section>
@@ -26,56 +24,61 @@
           <div class="htp-container">
             <h2>How to play</h2>
             <ol>
-              <li>Начните игру, выбрав игрока, который ходит первым.</li>
+              <li>Нажмите кнопку "Start", чтобы начать игру.</li>
               <li>
-                Каждый игрок по очереди выполняет ход, следуя установленным
-                правилам.
+                Игра начнется с мигания одной кнопки. Запомните её цвет и
+                нажмите ту же кнопку.
               </li>
               <li>
-                Во время своего хода игрок может использовать доступные действия
-                или карты (если применимо).
+                С каждым раундом последовательность будет увеличиваться на один
+                цвет. Запоминайте и повторяйте её.
               </li>
               <li>
-                Цель каждого игрока – набрать максимальное количество очков или
-                выполнить игровую задачу.
+                Если вы ошибетесь при повторении последовательности, игра
+                закончится.
               </li>
               <li>
-                Игра продолжается до тех пор, пока один из игроков не достигнет
-                условий победы.
+                Продолжайте, пока не достигнете максимальной длины
+                последовательности или пока не проиграете.
               </li>
             </ol>
           </div>
           <div class="rules-container">
             <h2>Game rules</h2>
             <ul>
-              <li>Каждый игрок должен по очереди выполнять свои ходы.</li>
               <li>
-                Игроки могут взаимодействовать друг с другом только в пределах
-                своих ходов.
+                Игра начинается с одной кнопки, которая загорается и издает
+                звук.
               </li>
-              <li>Выигрывает тот, кто первым наберет 10 очков.</li>
-              <li>Если игрок нарушает правило, он пропускает следующий ход.</li>
               <li>
-                Игра продолжается до тех пор, пока не будет объявлен победитель.
+                Вы должны точно повторить последовательность, которую показывает
+                игра.
+              </li>
+              <li>
+                С каждым раундом добавляется новый цвет в последовательность.
+              </li>
+              <li>
+                Если вы ошибаетесь при повторении, игра завершается, и ваш счёт
+                обнуляется.
+              </li>
+              <li>
+                Цель игры – повторять последовательности как можно дольше.
               </li>
             </ul>
           </div>
         </section>
-        <div class="best-score-container">
-          Best score: <span class="best-score"></span>
-        </div>
-        <div class="score">0</div>
-        <section class="circle-container">
-          <div class="circle red"></div>
-          <div class="circle blue"></div>
-          <div class="circle yellow"></div>
-          <div class="circle green"></div>
+        <section class="simon-game-image-container mt-4">
+          <img src="./public/images/simon-game.jpg" alt="simon-game" />
         </section>
-        <div class="start-game-container">
-          <button class="start-game">Start game</button>
+      </div>
+      <div class="slider-to-top-container">
+        <div class="slider-to-top">
+          <a href="#header-description">
+            <img src="./public/images/svgs/up-arrow.svg" />
+          </a>
         </div>
       </div>
     </main>
-    <script src="./script.js"></script>
+    <script type="module" src="./scripts/script.js" />
   </body>
 </html>

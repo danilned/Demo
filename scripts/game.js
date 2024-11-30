@@ -1,6 +1,9 @@
+import { apiURL } from "./request_sender.js";
+
 let score = 0;
 let sequence = [];
 let blockStartGame = false;
+let blockButtonsClick = false;
 let currentSequenceIndex = 0;
 
 const buttons = document.querySelectorAll(".circle");
@@ -8,6 +11,23 @@ const scoreDisplay = document.querySelector(".score");
 const bestScoreDisplay = document.querySelector(".best-score");
 
 bestScoreDisplay.textContent = localStorage.getItem("score") ?? 0;
+
+const putScore = async () => {
+  console.log("Put score");
+  try {
+    await fetch(`${apiURL}/players/sadamxuseinn`, {
+      method: "PUT",
+      body: JSON.stringify({ score }),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    // Error
+    console.log(error);
+  }
+};
 
 const place = {
   red: 0,
@@ -18,6 +38,7 @@ const place = {
 
 const flashButton = (color) => {
   buttons[place[color]].classList.add("active");
+
   setTimeout(() => {
     buttons[place[color]].classList.remove("active");
   }, 400);
@@ -35,22 +56,18 @@ const playSequence = async () => {
 };
 
 const startRound = () => {
-  if (blockStartGame) {
-    return;
-  }
-
-  blockStartGame = true;
+  blockButtonsClick = true;
 
   const rand = Math.floor(Math.random() * 4);
   sequence.push(buttons[rand].classList[1]);
 
   playSequence().then(() => {
-    blockStartGame = false;
+    blockButtonsClick = false;
   });
 };
 
 const handleButtonClick = (color) => {
-  if (blockStartGame) {
+  if (blockButtonsClick) {
     return;
   }
 
@@ -76,7 +93,9 @@ const handleButtonClick = (color) => {
 const resetGame = () => {
   const prevScore = localStorage.getItem("score");
 
-  if (!prevScore || prevScore < score) {
+  putScore();
+
+  if (!prevScore || +prevScore < score) {
     localStorage.setItem("score", score);
     bestScoreDisplay.textContent = score;
   }
@@ -85,6 +104,7 @@ const resetGame = () => {
   sequence = [];
   currentSequenceIndex = 0;
   scoreDisplay.textContent = score;
+  blockStartGame = false;
 };
 
 buttons.forEach((button) => {
@@ -95,4 +115,9 @@ buttons.forEach((button) => {
 
 document
   .querySelector(".start-game-container button")
-  .addEventListener("click", startRound);
+  .addEventListener("click", () => {
+    if (!blockStartGame) {
+      blockStartGame = true;
+      startRound();
+    }
+  });

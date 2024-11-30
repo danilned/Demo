@@ -63,3 +63,4 @@ export function alertCallback(text) {
 
 export const devApiURL = "http://127.0.0.1:8000";
 export const apiURL = "https://d5dsv84kj5buag61adme.apigw.yandexcloud.net";
+export const cookieExpireInMillis = 1000 * 60 * 2;

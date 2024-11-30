@@ -3,35 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./header.css" rel="stylesheet" />
-    <link href="./authorization.css" rel="stylesheet" />
-    <title>Document</title>
+    <link href="./styles/header.css" rel="stylesheet" />
+    <link href="./styles/authorization.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/jpg" href="./public/favicon.ico" />
+    <link
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Authorization</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/">Rules</a>
-        <a href="/authorization">Authorization</a>
-      </nav>
-    </header>
+    <header-component></header-component>
     <main>
       <div class="input-container">
-        <label>Имя пользователя:</label>
-        <input type="text" value="sadamxuseinn" class="input-name" />
+        <label class="form-label">Имя пользователя:</label>
+        <input
+          type="text"
+          value="sadamxuseinn"
+          class="input-name form-control"
+        />
       </div>
-      <div class="input-container">
-        <label>Пароль :</label>
-        <input type="text" class="input-password" />
+      <div class="input-container mt-2">
+        <label class="form-label">Пароль :</label>
+        <input type="password" class="input-password form-control" />
       </div>
       <div class="button-container">
-        <button class="register">Регистрация</button>
-        <button class="auth">Авторизация</button>
-      </div>
-      <div class="put-score-container">
-        <input type="number" class="put-score" />
-        <button class="put-score-btn">Send</button>
+        <button class="register btn btn-primary">Регистрация</button>
+        <button class="auth btn btn-secondary">Авторизация</button>
       </div>
     </main>
-    <script type="module" src="./authorization.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/authorization.js"></script>
   </body>
 </html>
