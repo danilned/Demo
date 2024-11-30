@@ -47,11 +47,6 @@ header > nav a {
   color: white;
 }
 
-body {
-  display: none;
-  opacity: 0;
-}
-
 @media screen and (max-width: 568px) {
   header {
     padding: 0px 36px;
