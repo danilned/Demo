@@ -11,10 +11,10 @@ class Header extends HTMLElement {
     context.innerHTML = `
       <header>
         <nav class="navbar justify-content-center">
-          <a class="nav-item" href="/">Rules</a>
-          <a class="nav-item" href="/authorization.html">Authorization</a>
-          <a class="nav-item" href="/game.html">Game</a>
-          <a class="nav-item" href="/leaderboard.html">Leaderboard</a>
+          <a class="nav-item" href="./index.html">Rules</a>
+          <a class="nav-item" href="./authorization.html">Authorization</a>
+          <a class="nav-item" href="./game.html">Game</a>
+          <a class="nav-item" href="./leaderboard.html">Leaderboard</a>
         </nav>
       </header>
     `;
