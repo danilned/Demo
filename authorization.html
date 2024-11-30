@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles/header.css" rel="stylesheet" />
+    <link href="./styles/authorization.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/jpg" href="./public/favicon.ico" />
+    <link
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Authorization</title>
+  </head>
+  <body>
+    <header-component></header-component>
+    <main>
+      <div class="input-container">
+        <label class="form-label">Имя пользователя:</label>
+        <input
+          type="text"
+          value="sadamxuseinn"
+          class="input-name form-control"
+        />
+      </div>
+      <div class="input-container mt-2">
+        <label class="form-label">Пароль :</label>
+        <input type="password" class="input-password form-control" />
+      </div>
+      <div class="button-container">
+        <button class="register btn btn-primary">Регистрация</button>
+        <button class="auth btn btn-secondary">Авторизация</button>
+      </div>
+    </main>
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/authorization.js"></script>
+  </body>
+</html>

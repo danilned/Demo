@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles/header.css" rel="stylesheet" />
+    <link href="./styles/game.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/jpg" href="./public/favicon.ico" />
+    <link
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Game</title>
+  </head>
+  <body>
+    <header-component></header-component>
+    <main>
+      <div class="best-score-container">
+        Best score: <span class="best-score"></span>
+      </div>
+      <div class="score">0</div>
+      <section class="circle-container">
+        <div class="circle red"></div>
+        <div class="circle blue"></div>
+        <div class="circle yellow"></div>
+        <div class="circle green"></div>
+      </section>
+      <div class="start-game-container mt-5">
+        <button class="start-game btn btn-primary">Start game</button>
+      </div>
+    </main>
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/game.js"></script>
+  </body>
+</html>

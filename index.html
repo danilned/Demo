@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./styles/style.css" rel="stylesheet" />
+    <link href="./styles/header.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/jpg" href="./public/favicon.ico" />
+    <link
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Main Page</title>
+  </head>
+  <body>
+    <header-component></header-component>
+    <main>
+      <section class="header-description" id="header-description">
+        <h3>Memory Game</h3>
+        <p>Test yout memory by repeating colors</p>
+      </section>
+      <div class="game">
+        <section class="game-description">
+          <div class="htp-container">
+            <h2>How to play</h2>
+            <ol>
+              <li>Нажмите кнопку "Start", чтобы начать игру.</li>
+              <li>
+                Игра начнется с мигания одной кнопки. Запомните её цвет и
+                нажмите ту же кнопку.
+              </li>
+              <li>
+                С каждым раундом последовательность будет увеличиваться на один
+                цвет. Запоминайте и повторяйте её.
+              </li>
+              <li>
+                Если вы ошибетесь при повторении последовательности, игра
+                закончится.
+              </li>
+              <li>
+                Продолжайте, пока не достигнете максимальной длины
+                последовательности или пока не проиграете.
+              </li>
+            </ol>
+          </div>
+          <div class="rules-container">
+            <h2>Game rules</h2>
+            <ul>
+              <li>
+                Игра начинается с одной кнопки, которая загорается и издает
+                звук.
+              </li>
+              <li>
+                Вы должны точно повторить последовательность, которую показывает
+                игра.
+              </li>
+              <li>
+                С каждым раундом добавляется новый цвет в последовательность.
+              </li>
+              <li>
+                Если вы ошибаетесь при повторении, игра завершается, и ваш счёт
+                обнуляется.
+              </li>
+              <li>
+                Цель игры – повторять последовательности как можно дольше.
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="simon-game-image-container mt-4">
+          <img src="./public/images/simon-game.jpg" alt="simon-game" />
+        </section>
+      </div>
+      <div class="slider-to-top-container">
+        <div class="slider-to-top">
+          <a href="#header-description">
+            <img src="./public/images/svgs/up-arrow.svg" />
+          </a>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./scripts/script.js" />
+  </body>
+</html>

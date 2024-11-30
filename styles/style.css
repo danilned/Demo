@@ -1,0 +1,65 @@
+button,
+.circle {
+  cursor: pointer;
+}
+
+main {
+  position: relative;
+}
+
+.game {
+  padding: 36px 96px;
+  position: relative;
+}
+
+.game-description {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.htp-container > ol,
+.rules-container > ul {
+  margin-top: 12px;
+  margin-left: 16px;
+}
+
+.htp-container li,
+.rules-container li {
+  font-size: 19px;
+}
+
+.simon-game-image-container {
+  display: flex;
+  justify-content: center;
+  padding: 0px 48px;
+  padding-bottom: 2048px;
+}
+
+.simon-game-image-container > img {
+  display: block;
+  width: 100%;
+}
+
+.slider-to-top-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.slider-to-top {
+  position: sticky;
+  cursor: pointer;
+  margin-top: 100vh;
+  top: calc(100vh - 48px);
+  transform: translateX(-100%);
+  width: fit-content;
+  left: 100%;
+}
+
+@media screen and (max-width: 568px) {
+  .game {
+    margin: 36px;
+  }
+}
