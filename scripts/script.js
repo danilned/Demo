@@ -15,13 +15,10 @@ switch (true) {
     break;
   }
   default: {
-    document.body.style.display = "block !important";
-    document.body.style.opacity = "1 !important";
+    document.body.style.display = "block";
+    document.body.style.opacity = 1;
   }
 }
-
-document.body.style.display = "block";
-document.body.style.opacity = 1;
 
 class Header extends HTMLElement {
   constructor() {
