@@ -80,8 +80,39 @@ export const retryRequest = async (url, options, retries = 3, delay = 1000) => {
       return retryRequest(url, options, retries - 1, delay);
     }
 
+    saveFailedRequest(url, options);
+
     throw new Error(
       `Запрос не удался после нескольких попыток: ${error.message}`
     );
   }
 };
+
+const saveFailedRequest = (url, options) => {
+  const failedRequests =
+    JSON.parse(localStorage.getItem("failedRequests")) ?? [];
+  failedRequests.push({ url, options, id: Date.now() });
+  localStorage.setItem("failedRequests", JSON.stringify(failedRequests));
+};
+
+export const retryFailedRequests = async () => {
+  const failedRequests =
+    JSON.parse(localStorage.getItem("failedRequests")) ?? [];
+
+  const results = await Promise.all(
+    failedRequests.map((cur) => {
+      const { url, options } = cur;
+
+      return fetch(url, options)
+        .then((response) => (response.ok ? null : cur))
+        .catch(() => cur);
+    })
+  );
+
+  const remainingRequests = results.filter(Boolean);
+
+  localStorage.setItem("failedRequests", JSON.stringify(remainingRequests));
+};
+
+document.addEventListener("load", retryFailedRequests);
+document.addEventListener("authorized", retryFailedRequests);
