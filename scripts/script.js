@@ -6,7 +6,8 @@ const isCookieExpired = !cookieExpiresIn
 const paths = window.location.pathname.split(/\//g);
 
 switch (true) {
-  case isCookieExpired && !paths.at(-1).includes("authorization"): {
+  case isCookieExpired &&
+    !["authorization", "index"].some((cur) => paths.at(-1).includes(cur)): {
     localStorage.removeItem("username");
 
     window.location.pathname =
@@ -27,29 +28,31 @@ class Header extends HTMLElement {
 
   connectedCallback() {
     this.registerAuthorizedListener(this);
-
-    if (isCookieExpired) {
-      return;
-    }
-
-    this.mountHeader(this);
+    this.mountHeader(this, !isCookieExpired);
   }
 
-  mountHeader(context) {
+  mountHeader(context, displayAuthorizedRoutes) {
     context.innerHTML = `
       <header>
         <nav class="navbar justify-content-center">
           <a class="nav-item" href="./index.html">Rules</a>
           <a class="nav-item" href="./authorization.html">Authorization</a>
-          <a class="nav-item" href="./game.html">Game</a>
-          <a class="nav-item" href="./leaderboard.html">Leaderboard</a>
+          ${
+            !displayAuthorizedRoutes
+              ? ``
+              : `
+                      <a class="nav-item" href="./game.html">Game</a>
+                      <a class="nav-item" href="./leaderboard.html">Leaderboard</a>`
+          }
         </nav>
       </header>
     `;
   }
 
   registerAuthorizedListener(context) {
-    document.addEventListener("authorized", () => this.mountHeader(context));
+    document.addEventListener("authorized", () =>
+      this.mountHeader(context, true)
+    );
   }
 }
 

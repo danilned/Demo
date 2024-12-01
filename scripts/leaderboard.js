@@ -5,11 +5,11 @@ const tbody = document.querySelector(".table tbody");
 let users = null;
 let availablePages = null;
 let currentPage = 0;
-const itemsOnPage = 5;
-const sortOrder = {
+let itemsOnPage = 5;
+const sortOrder = Object.freeze({
   score: 1,
   username: 0,
-};
+});
 
 const insertRows = () => {
   users
@@ -90,6 +90,18 @@ document
 document.querySelectorAll(".sort-icon").forEach((cur) => {
   cur.onclick = (event) => {
     sortTable(sortOrder[event.target.attributes.type.value]);
+  };
+});
+
+document.querySelectorAll(".buttons-count button").forEach((cur) => {
+  cur.onclick = (event) => {
+    itemsOnPage = +event.target.textContent;
+    availablePages = Math.floor(users.length / itemsOnPage) + 1;
+
+    const tbody = document.querySelector(".table tbody");
+    tbody.innerHTML = "";
+
+    insertRows();
   };
 });
 
