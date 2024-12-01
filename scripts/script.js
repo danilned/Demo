@@ -3,13 +3,14 @@ const isCookieExpired = !cookieExpiresIn
   ? true
   : cookieExpiresIn - new Date().getTime() <= 0;
 
+const paths = window.location.pathname.split(/\//g);
+
 switch (true) {
-  case isCookieExpired && window.location.pathname !== "/authorization.html": {
+  case isCookieExpired && !paths.at(-1).includes("authorization"): {
     localStorage.removeItem("username");
 
     window.location.pathname =
-      window.location.pathname.split(/\//g).slice(0, -1).join("\\") +
-      "/authorization.html";
+      paths.slice(0, -1).join("\\") + "/authorization.html";
 
     break;
   }
